@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d7b51d18-4126-4793-9ddd-4277b50c4c42" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../SAPR/lab1/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RPP" beforeDir="false" afterPath="$PROJECT_DIR$/../../RPP" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TA" beforeDir="false" afterPath="$PROJECT_DIR$/../../TA" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab3V2" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab3V2" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2emN43PM8dwP8EmzKMApCcjy2C1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7b51d18-4126-4793-9ddd-4277b50c4c42" name="Changes" comment="" />
+      <created>1712505601374</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712505601374</updated>
+    </task>
+    <servers />
+  </component>
+</project>
