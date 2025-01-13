@@ -1,0 +1,79 @@
+// Удаляем все существующие данные
+MATCH (n) DETACH DELETE n;
+
+// Создаем узлы для состояния склада
+CREATE (st1:StorageCondition {value: 'LowStock', type: 'InventoryStatus'}),    // Мало товаров на складе
+       (st2:StorageCondition {value: 'MediumStock', type: 'InventoryStatus'}), // Среднее количество товаров
+       (st3:StorageCondition {value: 'HighStock', type: 'InventoryStatus'})    // Высокий уровень запасов
+WITH st1, st2, st3
+
+// Создаем узлы для типов заказов
+CREATE (o1:OrderCondition {value: 'SmallOrder', type: 'OrderSize'}),   // Маленький заказ
+       (o2:OrderCondition {value: 'MediumOrder', type: 'OrderSize'}),  // Средний заказ
+       (o3:OrderCondition {value: 'LargeOrder', type: 'OrderSize'})    // Крупный заказ
+WITH st1, st2, st3, o1, o2, o3
+
+// Создаем узлы для состояния робота
+CREATE (r1:RobotCondition {value: 'Idle', type: 'RobotStatus'}),   // Робот свободен
+       (r2:RobotCondition {value: 'Busy', type: 'RobotStatus'}),   // Робот занят
+       (r3:RobotCondition {value: 'Charging', type: 'RobotStatus'}) // Робот заряжается
+WITH st1, st2, st3, o1, o2, o3, r1, r2, r3
+
+// Устанавливаем связи между состояниями склада, заказами и состояниями роботов с соответствующими действиями
+
+// Если мало товаров, маленький заказ и робот свободен -> Быстрая сборка
+MERGE (st1)-[:ACTION {name: 'QuickRestock'}]->(o1)-[:ACTION {name: 'FastPick'}]->(r1)
+
+// Если мало товаров, средний заказ и робот занят -> Уведомление менеджера
+MERGE (st1)-[:ACTION {name: 'AlertManager'}]->(o2)-[:ACTION {name: 'NotifySupplyChain'}]->(r2)
+
+// Если мало товаров, крупный заказ и робот заряжается -> Экстренная доставка
+MERGE (st1)-[:ACTION {name: 'EmergencyRestock'}]->(o3)-[:ACTION {name: 'UrgentShipping'}]->(r3)
+
+// Если средний запас, маленький заказ и робот свободен -> Обычная сборка
+MERGE (st2)-[:ACTION {name: 'StandardOperation'}]->(o1)-[:ACTION {name: 'NormalPick'}]->(r1)
+
+// Если средний запас, средний заказ и робот занят -> Оптимизация маршрута
+MERGE (st2)-[:ACTION {name: 'OptimizeRouting'}]->(o2)-[:ACTION {name: 'EfficientPick'}]->(r2)
+
+// Если средний запас, крупный заказ и робот заряжается -> Подготовка ресурсов
+MERGE (st2)-[:ACTION {name: 'PrepareResources'}]->(o3)-[:ACTION {name: 'AllocateResources'}]->(r3)
+
+// Если высокий запас, маленький заказ и робот свободен -> Быстрая доставка
+MERGE (st3)-[:ACTION {name: 'RapidShipping'}]->(o1)-[:ACTION {name: 'ImmediatePick'}]->(r1)
+
+// Если высокий запас, средний заказ и робот занят -> Сбалансированная работа
+MERGE (st3)-[:ACTION {name: 'BalancedWorkload'}]->(o2)-[:ACTION {name: 'ParallelProcessing'}]->(r2)
+
+// Если высокий запас, крупный заказ и робот заряжается -> Максимальная эффективность
+MERGE (st3)-[:ACTION {name: 'MaximizeEfficiency'}]->(o3)-[:ACTION {name: 'ScaleOperation'}]->(r3)
+
+// Добавляем дополнительные сценарии
+
+// Если мало товаров, маленький заказ и робот заряжается -> Простой заряд
+MERGE (st1)-[:ACTION {name: 'SimpleCharge'}]->(o1)-[:ACTION {name: 'SlowPick'}]->(r3)
+
+// Если мало товаров, средний заказ и робот свободен -> Дополнительное пополнение
+MERGE (st1)-[:ACTION {name: 'AdditionalRestock'}]->(o2)-[:ACTION {name: 'ModeratePick'}]->(r1)
+
+// Если мало товаров, крупный заказ и робот занят -> Срочная доставка
+MERGE (st1)-[:ACTION {name: 'CriticalRestock'}]->(o3)-[:ACTION {name: 'ExpressShipping'}]->(r2)
+
+// Если средний запас, маленький заказ и робот занят -> Параллельная сборка
+MERGE (st2)-[:ACTION {name: 'ParallelOperation'}]->(o1)-[:ACTION {name: 'RapidPick'}]->(r2)
+
+// Если средний запас, средний заказ и робот свободен -> Обычная доставка
+MERGE (st2)-[:ACTION {name: 'RegularOperation'}]->(o2)-[:ACTION {name: 'NormalShipping'}]->(r1)
+
+// Если средний запас, крупный заказ и робот свободен -> Продуктивная сборка
+MERGE (st2)-[:ACTION {name: 'ProductiveRestock'}]->(o3)-[:ACTION {name: 'FastShipping'}]->(r1)
+
+// Если высокий запас, маленький заказ и робот занят -> Оптимизированная доставка
+MERGE (st3)-[:ACTION {name: 'OptimizedShipping'}]->(o1)-[:ACTION {name: 'BalancedPick'}]->(r2)
+
+// Если высокий запас, средний заказ и робот свободен -> Максимальная скорость
+MERGE (st3)-[:ACTION {name: 'MaximumSpeed'}]->(o2)-[:ACTION {name: 'FastPick'}]->(r1)
+
+// Если высокий запас, крупный заказ и робот свободен -> Масштабируемая операция
+MERGE (st3)-[:ACTION {name: 'ScalableOperation'}]->(o3)-[:ACTION {name: 'LargeScaleShipping'}]->(r1);
+
